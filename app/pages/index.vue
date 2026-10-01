@@ -74,6 +74,27 @@ const openAuth = (mode: 'login' | 'register' = 'login') => {
 			</div>
 		</section>
 
+		<section class="screenshots page-section" aria-labelledby="screenshots-title">
+			<div class="section-intro reveal">
+				<p class="eyebrow"><span class="eyebrow-dot"></span> Una mirada a la app</p>
+				<h2 id="screenshots-title">Planify<br /><em>por dentro.</em></h2>
+			</div>
+			<div class="screenshots-grid">
+				<figure class="screenshot-item reveal">
+					<div class="screenshot-image"><img src="~/assets/interfazprincipal.png" alt="Pantalla principal de Planify con resumen de actividades y accesos rápidos" /></div>
+					<figcaption><span>01</span><div><h3>Tu día, de un vistazo</h3><p>Todo lo importante reunido en tu inicio.</p></div></figcaption>
+				</figure>
+				<figure class="screenshot-item reveal reveal-delay">
+					<div class="screenshot-image"><img src="~/assets/listaactividades.png" alt="Lista de actividades de Planify con filtros, prioridades y tareas" /></div>
+					<figcaption><span>02</span><div><h3>Actividades en orden</h3><p>Prioriza y sigue cada pendiente a tu ritmo.</p></div></figcaption>
+				</figure>
+				<figure class="screenshot-item reveal reveal-delay-2">
+					<div class="screenshot-image"><img src="~/assets/ChatIA.png" alt="Chat de Planify con el asistente de inteligencia artificial" /></div>
+					<figcaption><span>03</span><div><h3>Una ayuda inteligente</h3><p>Conversa con la IA para encontrar tu siguiente paso.</p></div></figcaption>
+				</figure>
+			</div>
+		</section>
+
 		<section id="beneficios" class="benefits page-section">
 			<div class="section-intro reveal"><p class="eyebrow"><span class="eyebrow-dot"></span> Mucho más que una agenda</p><h2>Tu día tiene un ritmo.<br /><em>Planify lo entiende.</em></h2></div>
 			<div class="benefit-content">
@@ -140,4 +161,21 @@ h1, h2, h3, p { margin-top: 0; } h1, h2 { font-family: 'Manrope', sans-serif; le
 .reveal { animation: rise .8s both; animation-timeline: view(); animation-range: entry 10% cover 30%; }@keyframes rise { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
 @media (max-width: 760px) { .nav-wrap, .page-section, footer { width: min(100% - 40px, 580px); }.nav-wrap { min-height: 72px; }.brand img { height: 45px; width: 112px; }.menu-toggle { background: none; border: 0; display: flex; flex-direction: column; gap: 5px; padding: 10px; }.menu-toggle span { background: var(--navy); display: block; height: 2px; width: 22px; }.nav-links { background: var(--ice); box-shadow: 0 15px 25px #082d5b12; display: none; flex-direction: column; gap: 20px; left: 0; padding: 25px; position: absolute; right: 0; top: 72px; z-index: 9; }.nav-links.is-open { display: flex; }.hero { display: flex; flex-direction: column; min-height: 0; padding: 55px 0 70px; }.hero-copy { width: 100%; }.hero-visual { height: 500px; margin-top: 12px; width: 100%; }.phone-frame { width: min(250px, 66%); }.note-top { right: -2px; top: 60px; }.note-bottom { bottom: 70px; left: -5px; }.visual-orbit { height: 420px; width: 300px; }.orbit-two { height: 360px; width: 440px; }.marquee-strip { gap: 22px; justify-content: flex-start; padding-left: 28px; white-space: nowrap; }.about { display: flex; flex-direction: column; gap: 45px; padding: 90px 0; }.about-visual { height: 300px; width: 100%; }.about-orbit { height: 260px; width: 350px; }.about-card-note { right: -5px; top: 34px; }.about-card-main { left: 8%; }.benefits, .steps { padding: 90px 0; }.benefit-content, .ai-section { display: flex; flex-direction: column; gap: 35px; margin-top: 45px; }.lead-copy { max-width: 430px; }.ai-section { padding: 75px 20px; }.ai-art { height: 270px; order: 2; }.ai-copy { order: 1; }.ai-art::before { height: 210px; width: 300px; }.ai-art::after { height: 300px; width: 210px; }.step-grid { grid-template-columns: 1fr; margin-top: 50px; }.step-card { padding-bottom: 25px; }.step-icon { margin-bottom: 30px; }.download { align-items: start; flex-direction: column; gap: 38px; padding: 65px 20px; width: 100%; }.download-action { text-align: left; }.download-register { margin-left: 0; }footer { flex-wrap: wrap; gap: 10px; padding: 22px 0; }.auth-modal { padding: 40px 24px 28px; } }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; }.reveal { animation: none; } }
+</style>
+
+<style scoped>
+.screenshots { padding-bottom: 135px; }
+.screenshots-grid { display: grid; gap: 22px; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 48px; }
+.screenshot-item { background: white; border: 1px solid #dce9ec; border-radius: 7px; box-shadow: 0 14px 32px #082d5b0d; margin: 0; overflow: hidden; }
+.screenshot-image { align-items: center; background: #f3f8f8; display: flex; height: 520px; justify-content: center; padding: 20px; }
+.screenshot-image img { display: block; height: 100%; max-width: 100%; object-fit: contain; }
+.screenshot-item figcaption { align-items: flex-start; border-top: 1px solid #e2edf0; display: flex; gap: 14px; min-height: 104px; padding: 19px 18px; }
+.screenshot-item figcaption > span { color: var(--green); font-size: .7rem; font-weight: 700; padding-top: 3px; }
+.screenshot-item h3 { font-family: 'Manrope', sans-serif; font-size: .95rem; margin-bottom: 6px; }
+.screenshot-item p { color: var(--ink-soft); font-size: .78rem; line-height: 1.5; margin: 0; }
+@media (max-width: 760px) {
+	.screenshots { padding-bottom: 90px; }
+	.screenshots-grid { grid-template-columns: 1fr; margin: 38px auto 0; max-width: 420px; }
+	.screenshot-image { height: 500px; }
+}
 </style>
