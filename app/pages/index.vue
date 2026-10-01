@@ -1,20 +1,13 @@
 <script setup lang="ts">
 const menuOpen = ref(false)
-const authOpen = ref(false)
-const authMode = ref<'login' | 'register'>('login')
 
 const closeMenu = () => {
 	menuOpen.value = false
 }
 
 const openAuth = (mode: 'login' | 'register' = 'login') => {
-	authMode.value = mode
-	authOpen.value = true
 	closeMenu()
-}
-
-const closeAuth = () => {
-	authOpen.value = false
+	return navigateTo({ path: '/acceso', query: mode === 'register' ? { mode } : undefined })
 }
 </script>
 
@@ -114,28 +107,6 @@ const closeAuth = () => {
 
 		<footer><a class="brand footer-brand" href="#inicio"><img src="~/assets/logo.png" alt="Planify" /></a><p>Organiza hoy, logra mañana.</p><span>© 2024 Planify</span></footer>
 
-		<div v-if="authOpen" class="auth-backdrop" role="presentation" @click.self="closeAuth">
-			<section class="auth-modal" role="dialog" aria-modal="true" :aria-labelledby="authMode === 'login' ? 'login-title' : 'register-title'">
-				<button class="modal-close" type="button" aria-label="Cerrar ventana" @click="closeAuth">×</button>
-				<div class="auth-heading">
-					<p class="eyebrow"><span class="eyebrow-dot"></span> Planifica tu próximo paso</p>
-					<h2 v-if="authMode === 'login'" id="login-title">Qué bueno<br /><em>verte de nuevo.</em></h2>
-					<h2 v-else id="register-title">Empieza a ordenar<br /><em>lo importante.</em></h2>
-					<p>{{ authMode === 'login' ? 'Entra a tu espacio personal y retoma tu día.' : 'Crea tu cuenta y convierte tus pendientes en progreso.' }}</p>
-				</div>
-
-				<form class="auth-form" @submit.prevent="closeAuth">
-					<label v-if="authMode === 'register'">Nombre completo<input type="text" placeholder="Tu nombre" autocomplete="name" required /></label>
-					<label>Correo electrónico<input type="email" placeholder="tu@correo.com" autocomplete="email" required /></label>
-					<label>Contraseña<input type="password" placeholder="Mínimo 8 caracteres" :autocomplete="authMode === 'login' ? 'current-password' : 'new-password'" minlength="8" required /></label>
-					<label v-if="authMode === 'register'">Confirmar contraseña<input type="password" placeholder="Repite tu contraseña" autocomplete="new-password" minlength="8" required /></label>
-					<div v-if="authMode === 'login'" class="form-options"><label class="check-label"><input type="checkbox" /> Recordarme</label><a href="#" @click.prevent>¿Olvidaste tu contraseña?</a></div>
-					<button class="button button-primary auth-submit" type="submit">{{ authMode === 'login' ? 'Iniciar sesión' : 'Crear mi cuenta' }} <span>↗</span></button>
-				</form>
-
-				<p class="auth-switch">{{ authMode === 'login' ? '¿Aún no tienes cuenta?' : '¿Ya tienes una cuenta?' }} <button type="button" @click="authMode = authMode === 'login' ? 'register' : 'login'">{{ authMode === 'login' ? 'Regístrate aquí' : 'Inicia sesión' }}</button></p>
-			</section>
-		</div>
 	</main>
 </template>
 
