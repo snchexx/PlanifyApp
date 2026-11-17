@@ -166,13 +166,24 @@ h1, h2, h3, p { margin-top: 0; } h1, h2 { font-family: 'Manrope', sans-serif; le
 <style scoped>
 .screenshots { padding-bottom: 135px; }
 .screenshots-grid { display: grid; gap: 22px; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 48px; }
-.screenshot-item { background: white; border: 1px solid #dce9ec; border-radius: 7px; box-shadow: 0 14px 32px #082d5b0d; margin: 0; overflow: hidden; }
-.screenshot-image { align-items: center; background: #f3f8f8; display: flex; height: 520px; justify-content: center; padding: 20px; }
-.screenshot-image img { display: block; height: 100%; max-width: 100%; object-fit: contain; }
+.screenshot-item { background: white; border: 1px solid #dce9ec; border-radius: 7px; box-shadow: 0 14px 32px #082d5b0d; margin: 0; overflow: hidden; transition: box-shadow .4s ease, transform .4s ease; }
+.screenshot-item:hover { box-shadow: 0 22px 42px #082d5b1a; transform: translateY(-6px); }
+.screenshot-image { align-items: center; background: #f3f8f8; display: flex; height: 520px; justify-content: center; overflow: hidden; padding: 20px; position: relative; }
+.screenshot-image img { animation: screenshot-float 7s ease-in-out infinite; display: block; height: 100%; max-width: 100%; object-fit: contain; transition: filter .4s ease; }
+.screenshot-item:hover .screenshot-image img { animation-play-state: paused; filter: saturate(1.08); }
+.screenshot-item:nth-child(2) .screenshot-image img { animation: screenshot-scroll 8s ease-in-out infinite; }
+.screenshot-item:nth-child(3) .screenshot-image img { animation: screenshot-breathe 6s ease-in-out infinite; }
+@keyframes screenshot-float { 0%, 100% { transform: translateY(0) scale(1.01); } 50% { transform: translateY(-7px) scale(1.035); } }
+@keyframes screenshot-scroll { 0%, 100% { transform: translateY(0) scale(1.02); } 50% { transform: translateY(-8px) scale(1.045); } }
+@keyframes screenshot-breathe { 0%, 100% { transform: translateY(2px) scale(1.01); } 50% { transform: translateY(-4px) scale(1.035); } }
 .screenshot-item figcaption { align-items: flex-start; border-top: 1px solid #e2edf0; display: flex; gap: 14px; min-height: 104px; padding: 19px 18px; }
 .screenshot-item figcaption > span { color: var(--green); font-size: .7rem; font-weight: 700; padding-top: 3px; }
 .screenshot-item h3 { font-family: 'Manrope', sans-serif; font-size: .95rem; margin-bottom: 6px; }
 .screenshot-item p { color: var(--ink-soft); font-size: .78rem; line-height: 1.5; margin: 0; }
+@media (prefers-reduced-motion: reduce) {
+	.screenshot-item, .screenshot-image img { animation: none; transition: none; }
+	.screenshot-item:hover { transform: none; }
+}
 @media (max-width: 760px) {
 	.screenshots { padding-bottom: 90px; }
 	.screenshots-grid { grid-template-columns: 1fr; margin: 38px auto 0; max-width: 420px; }
